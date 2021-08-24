@@ -19,7 +19,7 @@ public class MainViewModel extends ViewModel {
         return message;
     }
 
-    /*
+    /* commented out, this was the original ViewModel before the changes
     private String total = "0";
 
     public String getTotal() {

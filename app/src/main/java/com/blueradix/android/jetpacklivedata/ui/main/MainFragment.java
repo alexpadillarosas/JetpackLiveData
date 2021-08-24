@@ -47,7 +47,7 @@ public class MainFragment extends Fragment {
                 binding.message.setText(value);
             }
         };
-        //getThe MutableliveData object from the viewModel, then register the observer created for it.
+        //getThe MutableLiveData object from the viewModel, then register the observer created for it.
         mViewModel.getMessage().observe(getViewLifecycleOwner(), messageObserver);
 
         binding.doubleItButton.setOnClickListener(new View.OnClickListener() {
