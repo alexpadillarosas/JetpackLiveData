@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.blueradix.android.jetpacklivedata.R;
 import com.blueradix.android.jetpacklivedata.databinding.MainFragmentBinding;
 
 public class MainFragment extends Fragment {
@@ -40,15 +39,15 @@ public class MainFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
-        //create an observer for the message property in the viewModel
-        final Observer<String> messageObserver = new Observer<String>() {
+        //create an observer for the total property in the viewModel
+        final Observer<String> totalObserver = new Observer<String>() {
             @Override
             public void onChanged(String value) {
-                binding.message.setText(value);
+                binding.totalTextView.setText(value);
             }
         };
         //getThe MutableLiveData object from the viewModel, then register the observer created for it.
-        mViewModel.getMessage().observe(getViewLifecycleOwner(), messageObserver);
+        mViewModel.getTotal().observe(getViewLifecycleOwner(), totalObserver);
 
         binding.doubleItButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,9 +55,9 @@ public class MainFragment extends Fragment {
                 if(!binding.amountTextInputEditText.getText().toString().isEmpty()) {
                     String amount = binding.amountTextInputEditText.getText().toString();
                     Double amountDoubleIt = Double.valueOf(amount) * 2;
-                    mViewModel.setMessage(amountDoubleIt.toString());
+                    mViewModel.setTotal(amountDoubleIt.toString());
                 }else{
-                    mViewModel.setMessage("NO VALUE");
+                    mViewModel.setTotal("NO VALUE");
                 }
             }
         });
